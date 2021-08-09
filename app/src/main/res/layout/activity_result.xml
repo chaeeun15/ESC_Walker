@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResultActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/result_layout"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="@color/skyblue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/main_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/result_backbt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/result_backbt" />
+
+        <Button
+            android:id="@+id/result_backbt"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/ic_baseline_arrow_back_ios_24"
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/result_finishtv"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/edittext_line"
+            android:ems="10"
+            android:hint="도착장소"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/result_persontv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/result_starttv"
+            app:layout_constraintTop_toBottomOf="@+id/main_tv" />
+
+        <EditText
+            android:id="@+id/result_starttv"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/edittext_line"
+            android:ems="10"
+            android:hint="출발장소"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/result_finishtv"
+            app:layout_constraintEnd_toStartOf="@+id/result_finishtv"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/result_finishtv"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/result_daytv"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/edittext_line"
+            android:ems="10"
+            android:hint="날짜"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/result_persontv"
+            app:layout_constraintEnd_toStartOf="@+id/result_persontv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result_starttv" />
+
+        <EditText
+            android:id="@+id/result_persontv"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/edittext_line"
+            android:ems="10"
+            android:hint="인원"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/result_daytv"
+            app:layout_constraintTop_toBottomOf="@+id/result_finishtv" />
+
+        <Button
+            android:id="@+id/result_searchbt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/round_button"
+            android:text="조회"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result_daytv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/result_busbt"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/blackline"
+        android:gravity="center"
+        android:text="버스"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_layout" />
+
+    <Button
+        android:id="@+id/result_trainbt"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/blackline"
+        android:text="기차"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toStartOf="@+id/result_airplanebt"
+        app:layout_constraintStart_toEndOf="@+id/result_busbt"
+        app:layout_constraintTop_toBottomOf="@+id/result_layout" />
+
+    <Button
+        android:id="@+id/result_airplanebt"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@drawable/blackline"
+        android:text="비행기"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_layout" />
+</androidx.constraintlayout.widget.ConstraintLayout>
