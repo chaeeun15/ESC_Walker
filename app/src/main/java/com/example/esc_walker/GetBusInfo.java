@@ -97,32 +97,35 @@ public class GetBusInfo {
                         tag = xpp.getName();
 
                         if (tag.equals("item")) ;
-                        else if (tag.equals("charge")) {
-                            buffer.append("요금 : ");
+                        else if (tag.equals("arrPlandTime")) {
+                            //buffer.append("도착 시간 : ");
                             xpp.next();
                             buffer.append(xpp.getText());
                             buffer.append("\n");
                         }
+                        else if (tag.equals("charge")) {
+                            //buffer.append("요금 : ");
+                            xpp.next();
+                            buffer.append(xpp.getText());
+                            buffer.append("\n");
+                        }
+                        /*
                         else if (tag.equals("arrplaceNm")) {
                             buffer.append("도착지 : ");
                             xpp.next();
                             buffer.append(xpp.getText());
                             buffer.append("\n");
                         }
-                        else if (tag.equals("arrPlandTime")) {
-                            buffer.append("도착 시간 : ");
-                            xpp.next();
-                            buffer.append(xpp.getText());
-                            buffer.append("\n");
-                        }
+
+                         */
                         else if (tag.equals("depPlaceNm")) {
-                            buffer.append("출발지 : ");
+                            //buffer.append("출발지 : ");
                             xpp.next();
                             buffer.append(xpp.getText());
                             buffer.append("\n");
                         }
                         else if (tag.equals("depPlandTime")){
-                            buffer.append("출발 시간 : ");
+                            //buffer.append("출발 시간 : ");
                             xpp.next();
                             buffer.append(xpp.getText());
                             buffer.append("\n");

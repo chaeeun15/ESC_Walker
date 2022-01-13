@@ -2,6 +2,8 @@ package com.example.esc_walker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -35,6 +38,9 @@ public class SearchCity extends AppCompatActivity {
     ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city, adsp_start_tm, adsp_arrive_tm; //spinner 정보 출력할 adapter
 
     TextView tv_result; //test for api TODO
+    ArrayList<Bus> items = new ArrayList<>(); //bus 아이템 저장 arraylist
+
+    private ListViewAdapter adapter = new ListViewAdapter(); //리사이클러뷰 adapter
 
     //api 불러올 때 사용해야 하는 정보
     String start_tm;
@@ -71,7 +77,7 @@ public class SearchCity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        tv_result = (TextView)findViewById(R.id.tv_result); // test for api TODO
+        //tv_result = (TextView)findViewById(R.id.tv_result); // test for api TODO
 
         final Spinner sp_start_city = (Spinner)findViewById(R.id.sp_start_city);
         final Spinner sp_arrive_city = (Spinner)findViewById(R.id.sp_arrive_city);
@@ -177,10 +183,17 @@ public class SearchCity extends AppCompatActivity {
                                 start_id = GetBusInfo.getBusId(start_tm);
                                 arrive_id = GetBusInfo.getBusId(arrive_tm);
                                 String data = GetBusInfo.getBusData(start_id,arrive_id,start_date);
+                                String[] splitData = data.split("\\n");
+
+                                for (int i = 0; i < 1; i = i + 4) {
+                                    //여기서 ArrayIndexOutOfBoundsException 오류 발생
+                                    Bus bus = new Bus(splitData[i], splitData[i+1], splitData[i+2], splitData[i+3]);
+                                    items.add(bus);
+                                }
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        tv_result.setText(data);
+                                        adapter.setItems(items);
                                     }
                                 });
                             }
@@ -362,6 +375,11 @@ public class SearchCity extends AppCompatActivity {
                 });
             }
         });
+
+        //리사이클러뷰 초기화
+        RecyclerView recyclerView = findViewById(R.id.rv_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         search_ibtn_back = findViewById(R.id.search_ibtn_back);
         search_btn_lookup = findViewById(R.id.serach_btn_lookup);
