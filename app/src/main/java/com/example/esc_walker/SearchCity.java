@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,7 +38,7 @@ public class SearchCity extends AppCompatActivity {
     private ImageButton ibt_airplane;
     ArrayAdapter<CharSequence> adsp_start_city, adsp_arrive_city, adsp_start_tm, adsp_arrive_tm; //spinner 정보 출력할 adapter
 
-    TextView tv_result; //test for api TODO
+    //TextView tv_result; //test for api TODO
     ArrayList<Bus> items = new ArrayList<>(); //bus 아이템 저장 arraylist
 
     private ListViewAdapter adapter = new ListViewAdapter(); //리사이클러뷰 adapter
@@ -186,14 +187,15 @@ public class SearchCity extends AppCompatActivity {
                                 String[] splitData = data.split("\\n");
 
                                 for (int i = 0; i < 1; i = i + 4) {
-                                    //여기서 ArrayIndexOutOfBoundsException 오류 발생
-                                    Bus bus = new Bus(splitData[i], splitData[i+1], splitData[i+2], splitData[i+3]);
+                                    //TODO: 여기서 ArrayIndexOutOfBoundsException 오류 발생
+                                    Bus bus = new Bus(splitData[i], splitData[i + 1], splitData[i + 2], splitData[i + 3]);
                                     items.add(bus);
                                 }
+
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        adapter.setItems(items);
+                                        //adapter.setItems(items);
                                     }
                                 });
                             }

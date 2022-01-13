@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,13 +15,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -50,14 +50,15 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/search_ibtn_back"
                         app:layout_constraintTop_toTopOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
+                    android:id="@+id/relative_centor"
                     android:layout_width="match_parent"
-                    android:layout_height="559dp"
-                    android:layout_alignParentStart="true"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/cl_top"
                     android:layout_alignParentTop="true"
-                    android:layout_marginStart="0dp"
                     android:layout_marginTop="44dp"
                     android:orientation="vertical">
 
@@ -67,7 +68,6 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         tools:ignore="MissingConstraints">
-
 
                         <ImageButton
                             android:id="@+id/ibt_bus"
@@ -208,7 +208,10 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_list"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/relative_centor"
+                        android:background="#FFFFFF" />
+
                 </LinearLayout>
 
             </RelativeLayout>
