@@ -90,6 +90,8 @@ public class SearchCity extends AppCompatActivity {
         ibt_airplane = findViewById(R.id.ibt_airplane);
 
         search_btn_lookup = (Button)findViewById(R.id.serach_btn_lookup);
+        search_ibtn_back = findViewById(R.id.search_ibtn_back);
+        ibt_date = findViewById(R.id.ibt_calendar);
 
         //버스 입력모드
         ibt_bus.setOnClickListener(new View.OnClickListener() {
@@ -356,6 +358,22 @@ public class SearchCity extends AppCompatActivity {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_start_city.getItem(position).equals("광주")) {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("군산")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gunsan_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("무안")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_muan_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("여수")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_yeosu_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("원주")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_wonju_airplnae, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("양양")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_yangyang_airplnae, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("사천")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_sacheon_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("포항")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_pohang_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_start_city.getItem(position).equals("청주")) {
+                            adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_cheongju_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_start_city.getItem(position).equals("출발지")) {
                             adsp_start_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }
@@ -396,6 +414,22 @@ public class SearchCity extends AppCompatActivity {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_ulsan_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_arrive_city.getItem(position).equals("광주")) {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gwangju_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("군산")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_gunsan_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("무안")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_muan_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("여수")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_yeosu_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("원주")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_wonju_airplnae, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("양양")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_yangyang_airplnae, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("사천")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_sacheon_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("포항")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_pohang_airplane, android.R.layout.simple_spinner_dropdown_item);
+                        }else if(adsp_arrive_city.getItem(position).equals("청주")) {
+                            adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_tm_cheongju_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }else if(adsp_arrive_city.getItem(position).equals("도착지")) {
                             adsp_arrive_tm = ArrayAdapter.createFromResource(SearchCity.this, R.array.spinner_null_airplane, android.R.layout.simple_spinner_dropdown_item);
                         }
@@ -415,38 +449,42 @@ public class SearchCity extends AppCompatActivity {
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
+
+                search_btn_lookup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                start_id = GetPlaneInfo.GetPlaneId(start_tm);
+                                arrive_id = GetPlaneInfo.GetPlaneId(arrive_tm);
+                                list_plane = GetPlaneInfo.getPlaneData(start_id,arrive_id,start_date);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        MyAdapter_plane adapter = new MyAdapter_plane(getApplicationContext(),list_plane);
+                                        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
+                                        recyclerView.setHasFixedSize(true);
+                                        LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
+                                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                                        recyclerView.setLayoutManager(layoutManager);
+                                        recyclerView.setAdapter(adapter);
+                                    }
+                                });
+                            }
+                        }).start();
+
+                    }
+                });
             }
         });
-
-        search_ibtn_back = findViewById(R.id.search_ibtn_back);
-        search_btn_lookup = findViewById(R.id.serach_btn_lookup);
-        ibt_date = findViewById(R.id.ibt_calendar);
 
         //날짜 입력
         ibt_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        start_id = GetPlaneInfo.GetPlaneId(start_tm);
-                        arrive_id = GetPlaneInfo.GetPlaneId(arrive_tm);
-                        list_plane = GetPlaneInfo.getPlaneData(start_id,arrive_id,start_date);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                MyAdapter_train adapter = new MyAdapter_train(getApplicationContext(),list_train);
-                                RecyclerView recyclerView = (RecyclerView)findViewById(R.id.rcv_result);
-                                recyclerView.setHasFixedSize(true);
-                                LinearLayoutManager layoutManager = new LinearLayoutManager(SearchCity.this);
-                                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                                recyclerView.setLayoutManager(layoutManager);
-                                recyclerView.setAdapter(adapter);
-                            }
-                        });
-                    }
-                }).start();
-
+                new DatePickerDialog(SearchCity.this,datePicker,calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 

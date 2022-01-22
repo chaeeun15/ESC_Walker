@@ -41,6 +41,9 @@ public class MyAdapter_train extends RecyclerView.Adapter<MyAdapter_train.MyView
 
     @Override
     public int getItemCount() {
+        if (mList == null) {
+            return 0;
+        }
         return mList.size();
     }
 

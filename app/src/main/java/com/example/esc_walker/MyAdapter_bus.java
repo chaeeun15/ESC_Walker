@@ -41,6 +41,9 @@ public class MyAdapter_bus extends RecyclerView.Adapter<MyAdapter_bus.MyViewHold
 
     @Override
     public int getItemCount() {
+        if (mList == null) {
+            return 0;
+        }
         return mList.size();
     }
 

@@ -11,15 +11,11 @@ import java.util.ArrayList;
 public class GetPlaneInfo {
 
     public static String GetPlaneId(String pt){
-        StringBuffer buffer = new StringBuffer();
-
-        String numOfRows = "1";
-        String pageNo = "1";
+        String airlineId = null;
         String depPlaceId = pt;
         String serviceKey = "BJgPByzRIVjyd286CSF1ySqATMF%2BaQXFH2c3FD8kXKzJXcGoiX9mIA5l9i1sifZmdTBOKIpeGkb3F7iaIG%2BtPg%3D%3D";
 
-        String queryUrl = "http://openapi.tago.go.kr/openapi/service/DmstcFlightNvgInfoService/getFlightOpratInfoList" +
-                "?serviceKey=" + serviceKey + "&numOfRows="+ numOfRows + "&pageNo=" + pageNo + "&terminalNm=" + depPlaceId;
+        String queryUrl = "http://openapi.tago.go.kr/openapi/service/DmstcFlightNvgInfoService/getArprtList" + "?serviceKey=" + serviceKey;
 
         try{
             URL url = new URL(queryUrl);
@@ -41,10 +37,15 @@ public class GetPlaneInfo {
                     case XmlPullParser.START_TAG:
                         tag = xpp.getName();
 
-                        if (tag.equals("item")) ;
-                        else if (tag.equals("terminalId")) {
+                        if (tag.equals("item")) airlineId = null;
+                        else if (tag.equals("airportId")) {
                             xpp.next();
-                            buffer.append(xpp.getText());
+                            airlineId = xpp.getText();
+                        }else if (tag.equals("airportNm")) {
+                            xpp.next();
+                            if (depPlaceId.equals(xpp.getText())) {
+                                return airlineId;
+                            }
                         }
                         break;
                     case XmlPullParser.TEXT:
@@ -59,8 +60,9 @@ public class GetPlaneInfo {
         } catch (Exception e) {
             //TODO Auto-generated catch block.printStackTrace();
         }
-        return buffer.toString();
+        return airlineId;
     }
+
 
     public static ArrayList<Plane> getPlaneData(String dep, String arr, String date){
         ArrayList<Plane> list = null;
@@ -105,9 +107,6 @@ public class GetPlaneInfo {
                         if (tag.equals("item")){
                             plane = new Plane();
                         }
-                        else if (tag.equals("economyCharge")) {
-                            charge = true;
-                        }
                         else if (tag.equals("airlineNm")) {
                             airline = true;
                         }
@@ -117,12 +116,12 @@ public class GetPlaneInfo {
                         else if (tag.equals("depPlandTime")) {
                             depTime = true;
                         }
+                        else if (tag.equals("economyCharge")) {
+                            charge = true;
+                        }
                         break;
                     case XmlPullParser.TEXT:
-                        if(charge){
-                            plane.setCharge(xpp.getText());
-                            charge = false;
-                        }else if(airline){
+                        if(airline) {
                             plane.setAirline(xpp.getText());
                             airline = false;
                         }else if(arrTime){
@@ -139,6 +138,9 @@ public class GetPlaneInfo {
                             time = temp+":"+temp2;
                             plane.setDepTime(time);
                             depTime = false;
+                        }else if(charge){
+                            plane.setCharge(xpp.getText());
+                            charge = false;
                         }
                         break;
                     case XmlPullParser.END_TAG:

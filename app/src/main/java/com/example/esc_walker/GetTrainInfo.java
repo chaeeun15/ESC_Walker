@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class GetTrainInfo {
     public static String getTrainId(String tm,int cityCode){
+        //TODO: 지하철 역들에 추가 안된 것들 있음!
         int code = cityCode;
         String cityId = null;
         String numOfRows = "20";
@@ -18,7 +19,7 @@ public class GetTrainInfo {
         String serviceKey = "Fs01Vn3RHQ8uHoNuww6iprSsVRznk9sNFrvnoaOzslDiis2KPyeeYSwebpzVc8Tp5w2VyRjLvrgBVW5AR4iyJw%3D%3D";
 
         String queryUrl = "http://openapi.tago.go.kr/openapi/service/TrainInfoService/getCtyAcctoTrainSttnList" +
-                "?serviceKey=" + serviceKey + "&numOfRows="+ numOfRows + "&pageNo=" + pageNo + "&cityCode="+cityCode;
+                "?serviceKey=" + serviceKey + "&numOfRows="+ numOfRows + "&pageNo=" + pageNo + "&cityCode="+code;
 
         try{
             URL url = new URL(queryUrl);

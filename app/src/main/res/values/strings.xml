@@ -133,6 +133,14 @@
         <item>부산</item>
         <item>울산</item>
         <item>광주</item>
+        <item>군산</item>
+        <item>무안</item>
+        <item>여수</item>
+        <item>원주</item>
+        <item>양양</item>
+        <item>사천</item>
+        <item>포항</item>
+        <item>청주</item>
     </string-array>
 
     <string-array name="spinner_city_arrive_airplane">
@@ -144,12 +152,19 @@
         <item>부산</item>
         <item>울산</item>
         <item>광주</item>
+        <item>군산</item>
+        <item>무안</item>
+        <item>여수</item>
+        <item>원주</item>
+        <item>양양</item>
+        <item>사천</item>
+        <item>포항</item>
+        <item>청주</item>
     </string-array>
 
     <string-array name="spinner_tm_seoul_airplane">
         <item>김포(GMP)</item>
     </string-array>
-
     <string-array name="spinner_tm_incheon_airplane">
         <item>인천(ICN)</item>
     </string-array>
@@ -167,5 +182,29 @@
     </string-array>
     <string-array name="spinner_tm_gwangju_airplane">
         <item>광주(KWJ)</item>
+    </string-array>
+    <string-array name="spinner_tm_gunsan_airplane">
+        <item>군산(KUV)</item>
+    </string-array>
+    <string-array name="spinner_tm_muan_airplane">
+        <item>무안(MWX)</item>
+    </string-array>
+    <string-array name="spinner_tm_yeosu_airplane">
+        <item>여수(RSU)</item>
+    </string-array>
+    <string-array name="spinner_tm_wonju_airplnae">
+        <item>원주(WJU)</item>
+    </string-array>
+    <string-array name="spinner_tm_yangyang_airplnae">
+        <item>양양(YNY)</item>
+    </string-array>
+    <string-array name="spinner_tm_sacheon_airplane">
+        <item>사천(HIN)</item>
+    </string-array>
+    <string-array name="spinner_tm_pohang_airplane">
+        <item>포항(KPO)</item>
+    </string-array>
+    <string-array name="spinner_tm_cheongju_airplane">
+        <item>청주(CJJ)</item>
     </string-array>
 </resources>
